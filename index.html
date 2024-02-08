@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/webhookmain.css">
-    <title>Discord Webhook Gönderici</title>
+    <title>Discord Webhook</title>
 </head>
 <div class="yuklen">
     <div class="preloader-wrapper big active">
@@ -63,22 +63,22 @@
             <input id="webhookurl" type="url" style="color: aliceblue"> <label for="webhookurl" class="" >Webhook URL</label>
         </div>
         <div class="input-field col s12">
-            <textarea id="content" class="materialize-textarea" style="color: aliceblue" maxlength="2000"></textarea><label for="content">Mesaj</label>
+            <textarea id="content" class="materialize-textarea" style="color: aliceblue" maxlength="2000"></textarea><label for="content">Message</label>
         </div>
         <div class="row">
             <div class="input-field s6 col">
-                <input id="webhookusername" type="text" style="color: aliceblue" maxlength="32"> <label for="webhookusername">Kullanıcı adı</label>
+                <input id="webhookusername" type="text" style="color: aliceblue" maxlength="32"> <label for="webhookusername">Nom d'utilisateur</label>
             </div>
             <div class="input-field s6 col">
-                <input id="avatar_url" type="url" style="color: aliceblue"> <label for="avatar_url">Avatar url si</label>
+                <input id="avatar_url" type="url" style="color: aliceblue"> <label for="avatar_url">Url de l'avatar</label>
             </div>
         </div>
     </div>
     <div class="submit" style="text-align: center;">
-        <a href="javascript:submit()" class="btn tooltipped" data-position="bottom" data-tooltip="Mesajı gönderir"><i class="material-icons left"><i class="fas fa-paper-plane"></i></i>Gönder</a>
+        <a href="javascript:submit()" class="btn tooltipped" data-position="bottom" data-tooltip="Envoie le message"><i class="material-icons left"><i class="fas fa-paper-plane"></i></i>Gönder</a>
     </div>
     <div class="footer">
-        <a class="waves-effect waves-light btn github" href="https://github.com/ShockTr/discordwebhook"><i class="material-icons left"><i class="fab fa-github" aria-hidden="true"></i></i>Github repository</a>
+        <a class="waves-effect waves-light btn github" href="https://github.com/zeydroxx"><i class="material-icons left"><i class="fab fa-github" aria-hidden="true"></i></i>Github repository</a>
     </div>
 </main>
 <script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
@@ -91,20 +91,20 @@
         let username = $("#webhookusername").val();
         let avatar_url = $("#avatar_url").val();
         if (url == 0){
-            Materialize.toast('Lütfen URL giriniz!', 3000)
+            Materialize.toast('Veuillez saisir l\'URL!', 3000)
         }else{
         if (content == 0) {
-            Materialize.toast('Lütfen Mesaj giriniz!', 3000)
+            Materialize.toast('Veuillez entrer un message!', 3000)
         }else {
             $.ajax({
                 type: "post",
                 url : url,
                 data : {"content": content, "username": username, "avatar_url": avatar_url},
                 success : function () {
-                    Materialize.toast('Mesaj Gönderildi!', 3000)
+                    Materialize.toast('Message envoyé!', 3000)
                 },
                 error : function () {
-                    Materialize.toast('HATA! Lütfen url yi düzgün yazdığınızdan emin olun!', 3000)
+                    Materialize.toast('ERREUR ! Assurez-vous d\'avoir saisi l\'URL correctement !', 3000)
                 }
             })
         }}
