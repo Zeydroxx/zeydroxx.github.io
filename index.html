@@ -1,0 +1,115 @@
+<html lang="tr"><head>
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" rel="stylesheet">
+    <link rel="icon" href="https://discord.com/assets/07dca80a102d4149e9736d4b162cff6f.ico">
+    <link href="./fontawsome/css/all.css" rel="stylesheet" type="text/css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/webhookmain.css">
+    <title>Discord Webhook Gönderici</title>
+</head>
+<div class="yuklen">
+    <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+        </div>
+
+        <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+        </div>
+
+        <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+        </div>
+
+        <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+                <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+        </div><div class="circle-clipper right">
+            <div class="circle"></div>
+        </div>
+        </div>
+    </div>
+</div>
+<body style="background-color: #393939">
+
+<main class="container">
+    <div>
+        <h1 style="color: #cecece">Discord Webhook</h1>
+
+    </div>
+    <div class="card card-panel">
+        <div class="input-field s6 col">
+            <input id="webhookurl" type="url" style="color: aliceblue"> <label for="webhookurl" class="" >Webhook URL</label>
+        </div>
+        <div class="input-field col s12">
+            <textarea id="content" class="materialize-textarea" style="color: aliceblue" maxlength="2000"></textarea><label for="content">Mesaj</label>
+        </div>
+        <div class="row">
+            <div class="input-field s6 col">
+                <input id="webhookusername" type="text" style="color: aliceblue" maxlength="32"> <label for="webhookusername">Kullanıcı adı</label>
+            </div>
+            <div class="input-field s6 col">
+                <input id="avatar_url" type="url" style="color: aliceblue"> <label for="avatar_url">Avatar url si</label>
+            </div>
+        </div>
+    </div>
+    <div class="submit" style="text-align: center;">
+        <a href="javascript:submit()" class="btn tooltipped" data-position="bottom" data-tooltip="Mesajı gönderir"><i class="material-icons left"><i class="fas fa-paper-plane"></i></i>Gönder</a>
+    </div>
+    <div class="footer">
+        <a class="waves-effect waves-light btn github" href="https://github.com/ShockTr/discordwebhook"><i class="material-icons left"><i class="fab fa-github" aria-hidden="true"></i></i>Github repository</a>
+    </div>
+</main>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+<script src="./js/app.js"></script>
+<script>
+    function submit() {
+        let url = $("#webhookurl").val();
+        let content = $("#content").val();
+        let username = $("#webhookusername").val();
+        let avatar_url = $("#avatar_url").val();
+        if (url == 0){
+            Materialize.toast('Lütfen URL giriniz!', 3000)
+        }else{
+        if (content == 0) {
+            Materialize.toast('Lütfen Mesaj giriniz!', 3000)
+        }else {
+            $.ajax({
+                type: "post",
+                url : url,
+                data : {"content": content, "username": username, "avatar_url": avatar_url},
+                success : function () {
+                    Materialize.toast('Mesaj Gönderildi!', 3000)
+                },
+                error : function () {
+                    Materialize.toast('HATA! Lütfen url yi düzgün yazdığınızdan emin olun!', 3000)
+                }
+            })
+        }}
+        }
+</script>
+<div class="hiddendiv common"></div><div id="toast-container"></div>
+</body>
+</html>
